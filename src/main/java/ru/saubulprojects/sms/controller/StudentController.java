@@ -1,7 +1,10 @@
 package ru.saubulprojects.sms.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +37,12 @@ public class StudentController {
 	}
 	
 	@PostMapping("/new")
-	public String createStudent(@ModelAttribute("student") Student student) {
+	public String createStudent(@Valid @ModelAttribute("student") Student student, Errors errors) {
+		
+		if(errors.hasErrors()) {
+			return "student/create_student";
+		}
+		
 		studentService.saveStudent(student);
 		return "redirect:/students";
 	}
