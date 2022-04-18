@@ -10,4 +10,7 @@ public interface StudentService {
 	
 	public Student saveStudent(Student student);
 	
+	public Student getStudentById(Long id);
+	
+	public Student updateStudent(Student student);
 }
