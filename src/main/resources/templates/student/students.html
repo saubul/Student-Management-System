@@ -27,7 +27,7 @@
 		  </div>
 		</nav>
 	
-		<div class = "contrainer">
+		<div class = "container-fluid">
 			<h1>List of students</h1>
 			
 			<div class = "col-lg-3">
@@ -53,9 +53,11 @@
 						<td>
 							<a th:href = "@{/students/edit/{id}(id = ${student.getId()})}"
 							   class = "btn btn-primary">Update</a>
+							   
+							<a th:href = "@{students/delete/{id} (id = ${student.getId()})}"
+							   class = "btn btn-danger">Delete</a>
 						</td>
 							
-						</td>
 					</tr>
 				</tbody>
 				
