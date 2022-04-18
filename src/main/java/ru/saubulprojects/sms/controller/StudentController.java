@@ -44,6 +44,21 @@ public class StudentController {
 		return "student/edit_student";
 	}
 	
+	@PostMapping("/edit/{id}")
+	public String editStudent(@PathVariable("id") Long id, @ModelAttribute("student") Student student, Errors errors) {
+		if(errors.hasErrors()) {
+			return "student/edit_student";
+		}
+		
+		Student existingStudent = studentService.getStudentById(id);
+		existingStudent.setFirstName(student.getFirstName());
+		existingStudent.setLastName(student.getLastName());
+		existingStudent.setEmail(student.getLastName());
+		
+		studentService.updateStudent(existingStudent);
+		return "redirect:/students";
+	}
+	
 	@PostMapping("/new")
 	public String createStudent(@Valid @ModelAttribute("student") Student student, Errors errors) {
 		
@@ -56,4 +71,5 @@ public class StudentController {
 	}
 	
 
+	
 }

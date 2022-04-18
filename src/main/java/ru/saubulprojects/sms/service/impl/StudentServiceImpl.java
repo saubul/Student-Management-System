@@ -2,6 +2,7 @@ package ru.saubulprojects.sms.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ru.saubulprojects.sms.service.StudentService;
@@ -19,7 +20,7 @@ public class StudentServiceImpl implements StudentService{
 	
 	@Override
 	public List<Student> getListStudents() {
-		return studentRepo.findAll();
+		return studentRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	
 	@Override 
